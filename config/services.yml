@@ -1,0 +1,42 @@
+imports:
+    - { resource: tables.yml }
+
+services:
+    _defaults:
+        autowire: true
+        bind:
+            $container: '@service_container'
+            $php_ext: '%core.php_ext%'
+            $tables: '%tables%'
+
+    kaileymsnay.trackers.controller.main:
+        class: kaileymsnay\trackers\controller\main_controller
+
+    kaileymsnay.trackers.controller.acp:
+        class: kaileymsnay\trackers\controller\acp_controller
+
+    kaileymsnay.trackers.listener:
+        class: kaileymsnay\trackers\event\main_listener
+        tags:
+            - { name: event.listener }
+
+    kaileymsnay.trackers.functions:
+        class: kaileymsnay\trackers\includes\functions
+
+    kaileymsnay.trackers.project:
+        class: kaileymsnay\trackers\includes\project
+
+    kaileymsnay.trackers.tracker:
+        class: kaileymsnay\trackers\includes\tracker
+
+    kaileymsnay.trackers.tracker_cache:
+        class: kaileymsnay\trackers\includes\tracker_cache
+
+    kaileymsnay.trackers.viewproject:
+        class: kaileymsnay\trackers\operators\viewproject
+
+    kaileymsnay.trackers.viewticket:
+        class: kaileymsnay\trackers\operators\viewticket
+
+    kaileymsnay.trackers.viewtracker:
+        class: kaileymsnay\trackers\operators\viewtracker
